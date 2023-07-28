@@ -31,8 +31,8 @@ function LoginPage() {
             type="email"
             autoComplete="email"
             required
-            className="w-full rounded-xl border focus:border-indigo-500 focus: text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3 mx-auto border-purple-700 "
-            placeholder="Email*"
+            className="w-full rounded-xl border focus:border-indigo-500 focus: text-base outline-none text-gray font-bold py-1 px-3 leading-8 transition-colors duration-200 ease-in-out mb-3 mx-auto border-purple-700 "
+            placeholder="Email Address *"
           />
 
           <div className=" mx-auto mb-10 lg:w-2/6 md:w-1/2 rounded-lg flex flex-col md:ml-auto w-full mt-0   md:mt-0">
@@ -51,15 +51,13 @@ function LoginPage() {
           <button className="text-white bg-indigo-500 py-2 px-8 focus:outline-none hover:bg-indigo-600 text-lg w-5/12 mx-auto rounded-full font-medium bg-themeColor w-full">
             Send OTP
           </button>
-          <div className="text-center">
-            <Link
-              href={ROUTES_PATH.REGISTRATION}
-              className="mt-5 mx-auto font-bold text-lg text-themeColor"
-            >
-              Sign Up for free
-            </Link>
-          </div>
         </div>
+        <Link
+          href={ROUTES_PATH.REGISTRATION}
+          className="mx-auto font-bold text-lg text-themeColor"
+        >
+          Sign Up for free
+        </Link>
       </div>
       <div className="w-1/2 flex justify-center items-end h-full max-tablet:hidden">
         <Image

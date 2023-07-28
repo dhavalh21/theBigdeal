@@ -6,16 +6,17 @@ import InputField from "@/components/forms/InputField";
 import NavLink from "@/components/NavLink";
 import { ROUTES_PATH } from "@/helpers/constants/constants.helper";
 import Image from "next/image";
+import Link from "next/link";
 
 function Registration() {
   return (
     <section className="text-gray-600 body-font container mx-auto flex flex-wrap items-center h-[100vh]">
       <div className="w-1/2 flex justify-center items-center flex-col max-tablet:w-full h-full">
-        <img
+        <Image
           alt="logo"
           src={Logo}
-          height={"150px"}
-          width={"150px"}
+          height="150"
+          width="150"
           className="text-center mx-auto mb-5 hidden max-tablet:block "
         />
         <h2 className="text-gray-900 title-font mb-5 mx-auto text-3xl font-black">
@@ -23,13 +24,13 @@ function Registration() {
         </h2>
         <div className="relative mb-4 w-[280px] max-w-[100%]">
           <InputField
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
+            id="name"
+            name="name"
+            type="text"
+            autoComplete="name"
             required
-            className="w-full rounded-xl border focus:border-indigo-800 focus: text-base outline-none text-gray-700 py-1 px-3 leading-8  duration-200 ease-in-out mb-3 mx-auto border-purple-900"
-            placeholder="Name*"
+            className="w-full rounded-xl border focus:border-indigo-800 focus: text-base outline-none   py-1 px-3 leading-8  duration-200 ease-in-out mb-3 mx-auto border-purple-900 text-gray font-bold"
+            placeholder="Name *"
           />
 
           <InputField
@@ -38,19 +39,19 @@ function Registration() {
             type="email"
             autoComplete="email"
             required
-            className="w-full rounded-xl border focus:border-indigo-800 focus: text-base outline-none text-gray-700 py-1 px-3 leading-8  duration-200 ease-in-out mb-3 mx-auto border-purple-900"
-            placeholder="Email Address*"
+            className="w-full rounded-xl border focus:border-indigo-800 focus: text-base outline-none py-1 px-3 leading-8  duration-200 ease-in-out mb-3 mx-auto border-purple-900 text-gray font-bold"
+            placeholder="Email Address *"
           />
           <button className="text-white bg-indigo-500 py-2 px-8 focus:outline-none hover:bg-indigo-600 text-lg w-full mx-auto rounded-full font-medium bg-themeColor h-[45px]">
             Sign Up for free
           </button>
         </div>
-        <NavLink
+        <Link
           href={ROUTES_PATH.LOGIN}
-          className=" mt-3 mx-auto font-bold text-xl text-themeColor"
+          className="mx-auto font-bold text-xl text-themeColor"
         >
           Login
-        </NavLink>
+        </Link>
       </div>
       <div className="w-1/2 flex justify-center items-center max-tablet:hidden">
         <Image src={Logo} height="400" width="400" alt="logo" />

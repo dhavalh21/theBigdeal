@@ -87,7 +87,7 @@ const OtpInput = ({ length, onChange, error, helperText }) => {
           onChange={(event) => handleInputChange(event, i)}
           onKeyDown={(event) => handleInputKeyDown(event, i)}
           onPaste={handlePaste}
-          className="bg-red  max-w-[25%] h-[40px]   text-center border-2  border-b-themeColor border-white rounded-2 mb-2 focus:outline-none focus:border-purple-500"
+          className="  max-w-[23%] h-[40px] text-gray font-bold  text-center border-2  border-b-themeColor border-white rounded-2 mb-2 focus:outline-none focus:border-purple-500"
         />
       );
     }
@@ -95,7 +95,11 @@ const OtpInput = ({ length, onChange, error, helperText }) => {
     return inputs;
   };
 
-  return <div className="otp-input flex items-stretch ">{renderInputs()}</div>;
+  return (
+    <div className="otp-input flex gap-[3%] items-stretch ">
+      {renderInputs()}
+    </div>
+  );
 };
 
 export default OtpInput;
