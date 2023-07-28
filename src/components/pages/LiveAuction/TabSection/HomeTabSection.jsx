@@ -5,6 +5,7 @@ import TextCard from "@/components/common/Card/MessageCard/TextCard/TextCard";
 import RecentBidsList from "./RecentBidsList";
 import BuyPlaysTab from "./BuyPlaysTab";
 import ActivateBotTab from "./ActivateBotTab";
+import DeactiveBidBot from "@/components/common/Modal/DeactiveBidBot";
 
 //TODO remove when data come from backend
 const DumyData = {
@@ -14,12 +15,19 @@ const DumyData = {
 
 const HomeTabSection = () => {
   const [activeBtn, setActiveBtn] = useState(HOME_TABS[0].value);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const activeBtnChangeHandler = (value) => {
     setActiveBtn(value);
   };
 
   return (
     <>
+      {isModalVisible && (
+        <>
+          <div className="fixed w-full h-full backdrop-blur-[2px]  bg-[rgba(0,0,0,0.2)]  top-0 left-0 right-0 bottom-0 "></div>
+          <DeactiveBidBot setIsModalVisible={setIsModalVisible} />
+        </>
+      )}
       <TabLinks
         tabLinkObject={HOME_TABS}
         activeBtn={activeBtn}
@@ -27,7 +35,9 @@ const HomeTabSection = () => {
       />
       {activeBtn === HOME_TABS[0].value ? <RecentBidsList /> : null}
       {activeBtn === HOME_TABS[1].value ? <BuyPlaysTab /> : null}
-      {activeBtn === HOME_TABS[2].value ? <ActivateBotTab /> : null}
+      {activeBtn === HOME_TABS[2].value ? (
+        <ActivateBotTab setIsModalVisible={setIsModalVisible} />
+      ) : null}
       {activeBtn === HOME_TABS[3].value ? (
         // TODO Remove default title and body when data come from backend
         <TextCard title={DumyData.title} body={DumyData.body} />

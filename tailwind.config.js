@@ -51,6 +51,7 @@ module.exports = {
       headerBg: "#E3E6F7",
       themeColor: "#162459",
       grey: "#7C876E",
+      "gray-1": "#4B4B4B",
       "light-gray": "#e3e7f7",
     },
     boxShadow: {

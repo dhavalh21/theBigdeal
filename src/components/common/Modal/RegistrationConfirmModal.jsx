@@ -4,9 +4,9 @@ import Modal from "./Modal";
 const RegistrationConfirmModal = ({ setVisible }) => {
   return (
     <div>
-      <Modal moadalClass="w-[500px] h-[315px]">
+      <Modal width={555} height={331}>
         <div className="modalWrapper  flex justify-center items-center flex-col ">
-          <h4 className="modal-info w-[200px]  mx-auto my-[15px] text-xl max-mobile:text-xl max-mobile:w-full text-black text-center font-bold">
+          <h4 className="modal-info w-[245px]  mx-auto my-[15px] text-xl max-mobile:text-xl max-mobile:w-full text-black text-center font-bold">
             This auction is only for registered Bidders
           </h4>
           <h3 className="modal-heading-1  text-black text-xl text-center mb-1 max-mobile:text-xl">

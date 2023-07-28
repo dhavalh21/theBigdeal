@@ -2,7 +2,7 @@ import React from "react";
 import Card from "@/components/common/Card/Card";
 import questionMarkIcon from "@/assets/icons/questionMark.svg";
 import Image from "next/image";
-const ActivateBotTab = () => {
+const ActivateBotTab = ({ setIsModalVisible }) => {
   return (
     <Card>
       <div className=" px-[15px]  pr-[10px] w-100 flex items-center flex-col">
@@ -35,7 +35,10 @@ const ActivateBotTab = () => {
               className="text-white inline h-[20px] w-[20px] aspect-square cursor-pointer"
             />
           </div>
-          <button className="bg-blue text-white text-md p-[12px] font-bold rounded-full w-[200px] ">
+          <button
+            className="bg-blue text-white text-md p-[12px] font-bold rounded-full w-[200px] "
+            onClick={() => setIsModalVisible(true)}
+          >
             Activate Bid Bot
           </button>
         </form>
