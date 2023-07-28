@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  min-height: 100vh;
+}
+
+.otp-input input{
+  background-color: transparent;
+}
