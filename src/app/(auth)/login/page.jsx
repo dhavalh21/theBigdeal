@@ -52,7 +52,7 @@ function LoginPage() {
             </NavLink>
           </div>
           <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0 flex mt-1 justify-center">
-            <Image src={LoginImg} height={"265px"} width={"265px"} />
+            <Image src={LoginImg} height={"265px"} width={"265px"} alt="" />
           </div>
         </div>
       </section>

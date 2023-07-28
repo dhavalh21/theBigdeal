@@ -58,7 +58,7 @@ function RegisterPage() {
             </NavLink>
           </div>
           <div className="w-1/2 flex mt-1 justify-center">
-            <Image src={Logo} height={"400px"} width={"400px"} />
+            <Image src={Logo} height={"400px"} width={"400px"} alt="" />
           </div>
         </div>
       </section>

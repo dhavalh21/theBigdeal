@@ -17,7 +17,7 @@ const Modal = ({ children, moadalClass = "w-full h-auto" }) => {
           className={` max-mobile:max-w-[90%] max-w-[540px]  translate-y-0 transition-opacity duration-[250ms] ease-in-out transform rounded-[20px]  z-[1] h-auto max-h-[90%]  bg-white py-[20px] px-[22px] ${moadalClass}  `}
         >
           <div className="modal-header border-b-0 flex items-center justify-center ">
-            <img src={modalLogo} className="h-auto w-[90px]" alt="Logo" />
+            <img src={modalLogo} className="h-auto w-[90px]" alt="Logo"  />
             <a
               href="#!"
               role="button"
@@ -29,6 +29,7 @@ const Modal = ({ children, moadalClass = "w-full h-auto" }) => {
                 alt="close"
                 className="h-full w-full"
                 onClick={() => navigate(ROUTES_PATH.HOME)}
+            
               />
             </a>
           </div>
