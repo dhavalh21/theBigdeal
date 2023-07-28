@@ -13,6 +13,7 @@ import logoutIcon from "@/assets/images/logoutIcon.png";
 import { ROUTES_PATH } from "../helpers/constants/constants.helper";
 import { storage } from "../helpers/storage";
 import Image from "next/image";
+import Link from "next/link";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -98,7 +99,12 @@ function Header() {
 
       <div className="container text-white flex justify-between ">
         <div>
-          <Image src={logo} width={100} height={45} alt="Logo" />
+          <Link
+            href="/"
+            className="text-white hover:text-offWhite ease-linear cursor-pointer duration-300 max-tablet:block max-tablet:p-2"
+          >
+            <Image src={logo} width={100} height={45} alt="Logo" />
+          </Link>
         </div>
 
         <div className="flex gap-6 ">
@@ -153,7 +159,7 @@ function Header() {
                     </div>
                   </div>
                   <NavLink
-                    className="dark:hover:text-white rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap font-bold"
+                    className="dark:hover:text-white rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap font-bold text-dark"
                     href={ROUTES_PATH.HOME_DASHBOARD}
                   >
                     Profile
