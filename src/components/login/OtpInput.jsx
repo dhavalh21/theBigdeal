@@ -1,15 +1,11 @@
 import React, { useState, useRef } from "react";
 
-
 const OtpInput = ({ length, onChange, error, helperText }) => {
-  const [otp, setOTP] = useState(Array(length).fill(''));
+  const [otp, setOTP] = useState(Array(length).fill(""));
   const [isFilled, setIsFilled] = useState(false);
   const inputRefs = useRef([]);
 
-  console.log("otp",otp)
-
   const handleInputChange = (event, index) => {
-
     const newOTP = [...otp];
     const inputValue = event.target.value;
 
@@ -18,13 +14,13 @@ const OtpInput = ({ length, onChange, error, helperText }) => {
     setOTP(newOTP);
 
     // Move focus to the next input
-    if (inputValue !== '' && index < length - 1) {
+    if (inputValue !== "" && index < length - 1) {
       inputRefs.current[index + 1].focus();
     }
 
     // Call the onChange handler with the updated OTP value
-    if (typeof onChange === 'function') {
-      onChange(newOTP.join(''));
+    if (typeof onChange === "function") {
+      onChange(newOTP.join(""));
     }
 
     const isInputFilled = newOTP.every((value) => value !== "");
@@ -32,19 +28,19 @@ const OtpInput = ({ length, onChange, error, helperText }) => {
   };
 
   const handleInputKeyDown = (event, index) => {
-    if (event.key === 'Backspace' && event.target.value === '') {
+    if (event.key === "Backspace" && event.target.value === "") {
       event.preventDefault(); // Prevent browser navigation
 
       // Delete the previous input value on backspace
       if (index > 0) {
         const newOTP = [...otp];
-        newOTP[index - 1] = '';
+        newOTP[index - 1] = "";
         setOTP(newOTP);
         inputRefs.current[index - 1].focus();
 
         // Call the onChange handler with the updated OTP value
-        if (typeof onChange === 'function') {
-          onChange(newOTP.join(''));
+        if (typeof onChange === "function") {
+          onChange(newOTP.join(""));
         }
       }
     }
@@ -52,18 +48,18 @@ const OtpInput = ({ length, onChange, error, helperText }) => {
 
   const handlePaste = (event) => {
     event.preventDefault();
-    const pasteData = event.clipboardData.getData('text/plain');
+    const pasteData = event.clipboardData.getData("text/plain");
 
     // Validate and process pasted OTP
     if (pasteData.length === length && /^[0-9]+$/.test(pasteData)) {
-      const newOTP = pasteData.split('');
+      const newOTP = pasteData.split("");
 
       // Update the OTP value
       setOTP(newOTP);
 
       // Call the onChange handler with the updated OTP value
-      if (typeof onChange === 'function') {
-        onChange(newOTP.join(''));
+      if (typeof onChange === "function") {
+        onChange(newOTP.join(""));
       }
 
       // Move focus to the next input if available
@@ -87,19 +83,19 @@ const OtpInput = ({ length, onChange, error, helperText }) => {
           onChange={(event) => handleInputChange(event, i)}
           onKeyDown={(event) => handleInputKeyDown(event, i)}
           onPaste={handlePaste}
-          className='bg-red w-[40px] h-[40px]   text-center border-2  border-b-themeColor border-white rounded-2 mb-2 focus:outline-none focus:border-purple-500'
+          className="  max-w-[23%] h-[40px] text-gray font-bold  text-center border-2  border-b-themeColor border-white rounded-2 mb-2 focus:outline-none focus:border-purple-500"
         />
       );
-
-      if (i < length - 1) {
-        inputs.push(<span key={`dash-${i}`} className="mr-2"></span>);
-      }
     }
 
     return inputs;
   };
 
-  return <div className="otp-input">{renderInputs()}</div>;
+  return (
+    <div className="otp-input flex gap-[3%] items-stretch ">
+      {renderInputs()}
+    </div>
+  );
 };
 
 export default OtpInput;

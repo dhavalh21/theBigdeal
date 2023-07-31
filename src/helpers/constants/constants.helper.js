@@ -72,7 +72,7 @@ export const ROUTES_PATH = Object.freeze({
   BASE: "/",
   HOME: "/live-auction",
   LOGIN: "/login",
-  REGISTRATION: "/registration",
+  REGISTRATION: "/register",
   UPCOMING_AUCTION: "/upcoming-auction",
   MODAL_DEMO: "/modal-demo",
   HOME_DASHBOARD: "/home-dashboard",
