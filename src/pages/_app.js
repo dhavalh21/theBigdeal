@@ -1,12 +1,32 @@
+import "../styles/globals.css";
+import { SessionProvider, useSession, signIn } from "next-auth/react";
 
-import { SessionProvider } from "next-auth/react";
-
-export default function App({ Component, pageProps }) {
-  const { session, ...restPageProps } = pageProps;
-
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>
-      <Component {...restPageProps} />
+      {Component.auth ? (
+        <Auth>
+          <Component {...pageProps} />
+        </Auth>
+      ) : (
+        <Component {...pageProps} />
+      )}
     </SessionProvider>
   );
 }
+
+// check user is authenticated
+function Auth({ children }) {
+  const { status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      signIn();
+    },
+  });
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+  return children;
+}
+
+export default MyApp;

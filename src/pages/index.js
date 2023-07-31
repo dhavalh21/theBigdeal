@@ -1,13 +1,11 @@
-'use client'
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styles from "../../styles/Home.module.css";
+import styles from "../styles/Home.module.css";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Home() {
   const router = useRouter();
-  // const session = true;
   const { data: session } = useSession();
   // console.log(session); // has user details
   const handleClick = () => {
