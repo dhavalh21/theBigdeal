@@ -11,11 +11,14 @@ import ItemsSlider from "@/components/ItemsSlider";
 import BuyNow from "@/components/pages/LiveAuction/BuyNow";
 import MessageTextCard from "@/components/common/Card/MessageCard/TextCard/MessageTextCard";
 import TabHandler from "@/components/pages/MyAuctionTab/TabSection";
+import { useSearchParams } from 'next/navigation'
 
 export default function LiveAuctionPage() {
   const [isBuyNowShow, setIsBuyNowShow] = useState(false);
   const [isLowBalance, setIsLowBalance] = useState(false);
   const isSlider = true;
+  const searchParams = useSearchParams()
+  const search = searchParams.get('status')
 
   const sliderData = [
     {
@@ -35,6 +38,7 @@ export default function LiveAuctionPage() {
     },
   ];
 
+
   return (
     <>
       <Banner
@@ -51,6 +55,7 @@ export default function LiveAuctionPage() {
               isSlider={isSlider}
               isBuyNowShow={true}
               isLowBalance={isLowBalance}
+             
             />
             <MessageTextCard
               message={
@@ -63,7 +68,8 @@ export default function LiveAuctionPage() {
             <BidBarContainer
               isBuyNowShow={isBuyNowShow}
               setIsLowBalance={setIsLowBalance}
-              navigateFrom="home"
+              navigateFrom="auctiontable"
+              search={search}
             />
           </div>
 

@@ -6,11 +6,18 @@ import React, { useState } from "react";
 
 const MyAuction = () => {
   const [isBuyNowShow, setIsBuyNowShow] = useState(true);
+  const array = {
+    Lost: "my-auction",
+    Won: "my-auction",
+    Ongoing: "live-auction",
+    Registered: "upcoming-auction",
+  };
+
   const tableData = [
     {
       product: "Mercedes Benz",
       playConsumed: "500",
-      status: "won",
+      status: "Won",
       winBid: "$10.00",
     },
     {
@@ -34,51 +41,51 @@ const MyAuction = () => {
     {
       product: "Apple MacBook M2 ",
       playConsumed: "500",
-      status: "won",
+      status: "Won",
       winBid: "$10.00",
     },
     {
-        product: "Mercedes Benz",
-        playConsumed: "500",
-        status: "won",
-        winBid: "$10.00",
-      },
-      {
-        product: "Rolls Royce",
-        playConsumed: "500",
-        status: "Lost",
-        winBid: "$10.00",
-      },
-      {
-        product: "iPhone 13 Pro Max ",
-        playConsumed: "500",
-        status: "Registered",
-        winBid: "$10.00",
-      },
-      {
-        product: "Tata Harrier",
-        playConsumed: "500",
-        status: "Ongoing",
-        winBid: "$10.00",
-      },
-      {
-        product: "Apple MacBook M2 ",
-        playConsumed: "500",
-        status: "won",
-        winBid: "$10.00",
-      },
-      {
-        product: "Mercedes Benz",
-        playConsumed: "500",
-        status: "won",
-        winBid: "$10.00",
-      },    
-      {
-        product: "Apple MacBook M2 ",
-        playConsumed: "500",
-        status: "won",
-        winBid: "$10.00",
-      },    
+      product: "Mercedes Benz",
+      playConsumed: "500",
+      status: "Won",
+      winBid: "$10.00",
+    },
+    {
+      product: "Rolls Royce",
+      playConsumed: "500",
+      status: "Lost",
+      winBid: "$10.00",
+    },
+    {
+      product: "iPhone 13 Pro Max ",
+      playConsumed: "500",
+      status: "Registered",
+      winBid: "$10.00",
+    },
+    {
+      product: "Tata Harrier",
+      playConsumed: "500",
+      status: "Ongoing",
+      winBid: "$10.00",
+    },
+    {
+      product: "Apple MacBook M2 ",
+      playConsumed: "500",
+      status: "Won",
+      winBid: "$10.00",
+    },
+    {
+      product: "Mercedes Benz",
+      playConsumed: "500",
+      status: "Won",
+      winBid: "$10.00",
+    },
+    {
+      product: "Apple MacBook M2 ",
+      playConsumed: "500",
+      status: "Won",
+      winBid: "$10.00",
+    },
   ];
   return (
     <div>
@@ -108,12 +115,22 @@ const MyAuction = () => {
                         <>
                           <tr class="dark:border-primary-500">
                             <TableData>{index + 1}</TableData>
-                            <TableData><Link href={`/my-auction/${index+1}`} className="underline">{data.product}</Link></TableData>
-                            <TableData width={"200px"}>{data.playConsumed}</TableData>
+                            {/* <TableData><Link href={`/my-auction/${index+1}`} className="underline">{data.product}</Link></TableData> */}
+                            <TableData>
+                              <Link
+                                href={`/my-auction/${index + 1}?status=${data.status}`}
+                                className="underline"
+                              >
+                                {data.product}
+                              </Link>
+                            </TableData>
+                            <TableData width={"200px"}>
+                              {data.playConsumed}
+                            </TableData>
                             <td class="whitespace-nowrap font-bold px-1 py-[6px] border-r">
                               <div
                                 className={`p-2 w-[80px] mx-auto text-white rounded-sm ${
-                                  data.status === "won"
+                                  data.status === "Won"
                                     ? "bg-green"
                                     : data.status === "Lost"
                                     ? "bg-red"
@@ -156,10 +173,12 @@ const TableHead = ({ tagName }) => {
 };
 
 const TableData = ({ children, ...props }) => {
-
-    return (
+  return (
     <>
-      <td class="whitespace-nowrap font-bold px-2 py-1 border-5 border-r" {...props}>
+      <td
+        class="whitespace-nowrap font-bold px-2 py-1 border-5 border-r"
+        {...props}
+      >
         {children}
       </td>
     </>

@@ -1,3 +1,13 @@
+//auction id 
+export const STATUSTOURL= {
+  LOST: "my-auction",
+  WON: "my-auction",
+  ONGOING: "live-auction",
+  Regsitered: "upcoming-auction",
+};
+
+
+//OLD DATA
 export const LS = {
   AUTH_TOKEN: "ATOKEN",
   REF_TOKEN: "RTOKEN",

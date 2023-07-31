@@ -1,9 +1,11 @@
+'use client'
 import Logo from "@/assets/images/mainLogo.png";
 import Image from "next/image";
 import { ROUTES_PATH } from "@/helpers/constants/constants.helper";
 import Link from "next/link";
 
 function HomeDashboard() {
+
   return (
     <div>
       <div
