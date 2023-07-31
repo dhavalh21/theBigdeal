@@ -84,3 +84,21 @@ export const UPCOMING_AUCTION_TABS = [
     tabIcon: homeTabIcon3,
   },
 ];
+//my auction 
+export const MY_AUCTION_TABS = [
+  {
+    value: "Recent Bids",
+    text: "Recent Bids",
+    tabIcon: homeTabIcon1,
+  },
+  {
+    value: "Winning Info",
+    text: "Winning Info",
+    tabIcon: homeTabIcon2,
+  },
+  {
+    value: "Product Info",
+    text: "Product Info",
+    tabIcon: homeTabIcon3,
+  },
+];

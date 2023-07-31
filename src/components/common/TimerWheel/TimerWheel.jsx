@@ -14,7 +14,7 @@ const TimerWheel = ({
 }) => {
   return (
     <>
-      {isBuyNowShow ? (
+      {true ? (
         <Image
           src={
             navigateFrom === "home"
