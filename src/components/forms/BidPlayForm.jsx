@@ -24,12 +24,17 @@ const BidPlayForm = ({ setVisible = () => {} }) => {
           isDropdown
           className="dropdown h-41  rounded-lg  w-[182px] h-[35px] bg-gray-13 px-3 text-sm"
         />
-
-        <InputField
-          type="text"
-          className="inputTabs  rounded-lg w-[182px] h-[35px] bg-gray-13 px-3 text-sm"
-          placeholder="Amount to be Paid"
-        />
+        <div className="relative">
+          <InputField
+            type="text"
+            className="inputTabs  rounded-lg w-[182px] h-[35px] bg-gray-13 px-3 text-sm"
+            placeholder="Amount to be Paid"
+          />
+          <div className="absolute top-2 -right-[4.8rem] text-xs font-medium text-gray-1">
+            <p>USDT</p>
+            <p>(1 PLAY = $0.1)</p>
+          </div>
+        </div>
 
         <Button
           rounded

@@ -3,7 +3,7 @@ import "./globals.css";
 import { Metadata } from "next";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
-import Header from "@/components/Header";
+import Providers from "@/redux/Provider";
 
 const APP_NAME = "Next13 - PWA";
 const APP_DESCRIPTION = "Next13 with PWA";
@@ -44,7 +44,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
-      <body className={montserrat.className}>{children}</body>
+      <body className={montserrat.className}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

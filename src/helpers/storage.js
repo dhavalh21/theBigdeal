@@ -1,7 +1,7 @@
 const storagePrefix = "tbd_frontend_token";
 const storageUUID = "tbd_frontend_uuid";
 const storageUserInfo = "user_info";
-export const storage = {
+const storage = {
   getToken: () => {
     return JSON.parse(window.localStorage.getItem(storagePrefix));
   },
@@ -22,3 +22,4 @@ export const storage = {
     window.localStorage.removeItem(storageUUID);
   },
 };
+export default storage;
