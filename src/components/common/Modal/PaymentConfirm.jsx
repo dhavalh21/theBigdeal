@@ -23,7 +23,7 @@ const PaymentConfirm = ({ setVisible }) => {
           <button
             className=" bg-green modal-btn-1  w-[213px] h-[60px] mt-7 text-white text-lg max-mobile:text-lg max-mobile:w-[220px] max-mobile:h-[60px] font-bold rounded-lg "
             style={{ outline: "none" }}
-            onClick={() => setVisible(6)}
+            onClick={() => setVisible(1)}
           >
             OKAY
           </button>

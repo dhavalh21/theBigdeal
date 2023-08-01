@@ -12,7 +12,6 @@ export const userLogin = createAsyncThunk("user/login", async (params, cb) => {
     } else {
       cb(ERROR, res);
     }
-    console.log(res);
     return res;
   } catch (error) {
     return error;
@@ -22,7 +21,7 @@ export const userLogin = createAsyncThunk("user/login", async (params, cb) => {
 export const userVerify = createAsyncThunk("user/verify", async (params) => {
   const { email, otp, cb } = params;
   try {
-    const res = userVerifyHttp({ email, otp });
+    const res = await userVerifyHttp({ email, otp });
     if (res.success) {
       cb(SUCCESS, res);
     } else {

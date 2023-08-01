@@ -36,14 +36,12 @@ const Modal = ({
               <Image src={modalLogo} className="h-auto w-[90px]" alt="Logo" />
             )}
 
-            <a
-              href="#!"
-              role="button"
+            <div
               className="  flex items-center justify-center w-[35px] h-[35px]  border-none cursor-pointer absolute right-[20px] top-[15px] z-50"
               aria-label="close this modal"
             >
               <Image src={CloseBtn} alt="close" className="h-full w-full" />
-            </a>
+            </div>
           </div>
           {children}
         </div>

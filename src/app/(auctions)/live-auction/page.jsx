@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import HomeTabSection from "@/components/pages/LiveAuction/TabSection/HomeTabSection";
 import AvatarList from "@/components/pages/LiveAuction/AvatarList";
@@ -10,6 +10,7 @@ import mobile from "@/assets/images/mobile.png";
 import ItemsSlider from "@/components/ItemsSlider";
 import BuyNow from "@/components/pages/LiveAuction/BuyNow";
 import MessageTextCard from "@/components/common/Card/MessageCard/TextCard/MessageTextCard";
+import socket from "@/helpers/socket";
 
 export default function LiveAuctionPage() {
   const [isBuyNowShow, setIsBuyNowShow] = useState(false);
@@ -33,7 +34,15 @@ export default function LiveAuctionPage() {
       image: mobile,
     },
   ];
-
+  useEffect(() => {
+    socket.init();
+    setTimeout(() => {
+      socket.emit("health", { message: "socket testing" });
+    }, 1000);
+  }, []);
+  socket.on("healthResponse", async (data) => {
+    console.log(data, "=================>");
+  });
   return (
     <>
       <Banner
