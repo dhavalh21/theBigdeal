@@ -1,14 +1,21 @@
-const storagePrefix = "tbd_frontend_token";
+const storagePrefixAccess = "tbd_frontend_access_token";
 const storageUUID = "tbd_frontend_uuid";
 const storageUserInfo = "user_info";
+const storagePrefixRefresh = "tbd_frontend_refresh_token";
 const storage = {
   getToken: () => {
-    return JSON.parse(window.localStorage.getItem(storagePrefix));
+    return JSON.parse(window.localStorage.getItem(storagePrefixAccess));
   },
   getUUID: () => {
     return JSON.parse(window.localStorage.getItem(storageUUID));
   },
+  getRefToken:()=>{
+    return JSON.parse(window.localStorage.getItem(storagePrefixRefresh));
+  },
   setToken: (token) => {
+    window.localStorage.setItem(storagePrefix, JSON.stringify(token));
+  },
+  setRefToken: (token) => {
     window.localStorage.setItem(storagePrefix, JSON.stringify(token));
   },
   setUserData: (data) => {
@@ -20,6 +27,7 @@ const storage = {
   clear: () => {
     window.localStorage.removeItem(storagePrefix);
     window.localStorage.removeItem(storageUUID);
+    window.localStorage.removeItem(storagePrefixRefresh);
   },
 };
 export default storage;
