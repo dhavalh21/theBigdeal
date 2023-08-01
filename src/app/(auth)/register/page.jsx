@@ -3,7 +3,6 @@
 
 import Logo from "@/assets/images/thebigdeal-logo.png";
 import InputField from "@/components/forms/InputField";
-import NavLink from "@/components/NavLink";
 import { ROUTES_PATH } from "@/helpers/constants/constants.helper";
 import Image from "next/image";
 import Link from "next/link";
