@@ -31,6 +31,7 @@ function LoginPage() {
     setOtpValue(e);
   };
   const handleSubmit = (event) => {
+    
     event.preventDefault();
     let flagError = false;
 
@@ -38,7 +39,7 @@ function LoginPage() {
       setOtpVisible(false);
       flagError = true;
       setEmailError(true);
-    } else if (emailValidation(email)) {
+    } else if (!emailValidation(email)) {
       setEmailError(true);
       setOtpVisible(false);
       flagError = true;

@@ -7,6 +7,14 @@ export const STATUSTOURL= {
 };
 
 
+//validation messages
+export const VALIDATEMESSAGE = {
+  INVALIDEMAIL : "Invalid email",
+  EMPTYEMAIL : "Please enter your email !",
+}
+
+
+
 //OLD DATA
 export const LS = {
   AUTH_TOKEN: "ATOKEN",

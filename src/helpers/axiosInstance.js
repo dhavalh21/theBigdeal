@@ -25,13 +25,13 @@ axiosInstance.interceptors.response.use(
   },
   (error) => {
     //TODO: add error toast message here
-    if (err.message === "Network Error")
+    if (error.message === "Network Error")
       return {
         success: false,
         message: "Network Error",
         metdata: {},
       };
-    const { data, status } = err.response;
+    const { data, status } = error.response;
     return { ...data, status };
   }
 );
