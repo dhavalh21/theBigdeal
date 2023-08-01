@@ -1,9 +1,23 @@
+"use client";
 import Logo from "@/assets/images/mainLogo.png";
 import Image from "next/image";
 import { ROUTES_PATH } from "@/helpers/constants/constants.helper";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
 
 function HomeDashboard() {
+  // signOut("/login");
+  const { data: session, status } = useSession({
+    required: true,
+  });
+
+  if (status === "loading") {
+    return <></>;
+  }
+  if (!session) {
+    redirect("/login");
+  }
   return (
     <div>
       <div

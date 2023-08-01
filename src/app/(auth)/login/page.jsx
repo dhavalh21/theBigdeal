@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { userLogin, userVerify } from "@/redux/user/user.thunk";
 import { emailValidation } from "@/helpers/utils.helper";
 import { SUCCESS } from "@/helpers/constants/labels.constants";
+import { signIn } from "next-auth/react";
 
 function LoginPage() {
   const dispatch = useDispatch();
@@ -73,12 +74,22 @@ function LoginPage() {
         })
       );
     } else if (!flagError && otpVisible) {
+      console.log("opt handle");
       dispatch(
         userVerify({
           email: email,
           otp: otpValue,
           cb: (status, data) => {
+            console.log("status", status);
+            console.log("data", data);
             if (status === SUCCESS) {
+              console.log("SUCCESS");
+              console.log(data);
+              signIn("credentials", {
+                ...data,
+                redirect: true,
+                callbackUrl: "/",
+              });
               //TODO:add toast msg
               // <NavLink href="/home" />;
               // toast.success("You have logged in successfully.");
