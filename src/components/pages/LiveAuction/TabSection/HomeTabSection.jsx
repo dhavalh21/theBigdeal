@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from "react";
 import TabLinks from "@/components/common/TabLinks/TabLinks";
 import { HOME_TABS } from "@/helpers/constants/enum.constants.helper";

@@ -3,7 +3,7 @@ import Card from "../../Card";
 
 const MessageCardList = ({ List = [] }) => {
   return (
-    <Card cardClass="h-[235px]">
+    <Card cardClass="h-[265px]">
       <div className="pl-[26px] pt-[14px]">
         {List.length
           ? List.map((data, index) => (
