@@ -3,9 +3,9 @@ import TabLinks from "@/components/common/TabLinks/TabLinks";
 import { HOME_TABS } from "@/helpers/constants/enum.constants.helper";
 import TextCard from "@/components/common/Card/MessageCard/TextCard/TextCard";
 import RecentBidsList from "./RecentBidsList";
-import BuyPlaysTab from "./BuyPlaysTab";
 import ActivateBotTab from "./ActivateBotTab";
 import DeactiveBidBot from "@/components/common/Modal/DeactiveBidBot";
+import BidPlayForm from "@/components/forms/BidPlayForm";
 
 //TODO remove when data come from backend
 const DumyData = {
@@ -34,7 +34,7 @@ const HomeTabSection = () => {
         tabLinksClickHandler={activeBtnChangeHandler}
       />
       {activeBtn === HOME_TABS[0].value ? <RecentBidsList /> : null}
-      {activeBtn === HOME_TABS[1].value ? <BuyPlaysTab /> : null}
+      {activeBtn === HOME_TABS[1].value ? <BidPlayForm /> : null}
       {activeBtn === HOME_TABS[2].value ? (
         <ActivateBotTab setIsModalVisible={setIsModalVisible} />
       ) : null}
