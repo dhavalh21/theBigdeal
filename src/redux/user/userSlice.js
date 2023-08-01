@@ -34,9 +34,10 @@ const userSlice = createSlice({
         state.status = STATUS.FULFILLED;
         state.userInfo = action.payload.data;
         state.successMessage = action.payload.message;
+
         storage.setUserData(action.payload.data);
-        storage.setToken(action.payload.accessToken);
-        storage.setRefToken(action.payload.refreshToken);
+        storage.setToken(action.payload.data.accessToken);
+        storage.setRefToken(action.payload.data.refreshToken);
       })
       .addCase(userVerify.rejected, (state, action) => {
         state.status = STATUS.REJECTED;

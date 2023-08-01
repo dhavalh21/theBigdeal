@@ -12,7 +12,6 @@ export const userLogin = createAsyncThunk("user/login", async (params, cb) => {
     } else {
       cb(ERROR, res);
     }
-    console.log(res);
     return res;
   } catch (error) {
     return error;

@@ -1,22 +1,23 @@
-const storagePrefixAccess = "tbd_frontend_access_token";
+const storagePrefixAccess = "access_token";
 const storageUUID = "tbd_frontend_uuid";
 const storageUserInfo = "user_info";
-const storagePrefixRefresh = "tbd_frontend_refresh_token";
+const storagePrefixRefresh = "refresh_token";
 const storage = {
   getToken: () => {
-    return JSON.parse(window.localStorage.getItem(storagePrefixAccess));
+    const token = window.localStorage.getItem(storagePrefixAccess);
+    return token ? token : undefined;
   },
   getUUID: () => {
     return JSON.parse(window.localStorage.getItem(storageUUID));
   },
-  getRefToken:()=>{
+  getRefToken: () => {
     return JSON.parse(window.localStorage.getItem(storagePrefixRefresh));
   },
   setToken: (token) => {
-    window.localStorage.setItem(storagePrefix, JSON.stringify(token));
+    window.localStorage.setItem(storagePrefixAccess, JSON.stringify(token));
   },
   setRefToken: (token) => {
-    window.localStorage.setItem(storagePrefix, JSON.stringify(token));
+    window.localStorage.setItem(storagePrefixRefresh, JSON.stringify(token));
   },
   setUserData: (data) => {
     window.localStorage.setItem(storageUserInfo, JSON.stringify(data));
@@ -25,7 +26,7 @@ const storage = {
     window.localStorage.setItem(storageUUID, JSON.stringify(uuid));
   },
   clear: () => {
-    window.localStorage.removeItem(storagePrefix);
+    window.localStorage.removeItem(storagePrefixAccess);
     window.localStorage.removeItem(storageUUID);
     window.localStorage.removeItem(storagePrefixRefresh);
   },
