@@ -5,6 +5,7 @@ const {
   userLoginHttp,
   userVerifyHttp,
   userRegisterHttp,
+  userLogoutHttp,
 } = require("./user.httpCalls");
 
 export const userLogin = createAsyncThunk("user/login", async (params, cb) => {
@@ -40,7 +41,6 @@ export const userVerify = createAsyncThunk("user/verify", async (params) => {
 export const userRegister = createAsyncThunk(
   "user/register",
   async (params) => {
-    console.log(params, "params");
     const { first_name, last_name, country, email, cb } = params;
     try {
       const res = await userRegisterHttp({
@@ -61,3 +61,17 @@ export const userRegister = createAsyncThunk(
     }
   }
 );
+
+export const userLogout = createAsyncThunk('user/logout',async()=>{
+  try {
+    const res = await userLogoutHttp();
+    if (res.success) {
+      cb(SUCCESS, res);
+    } else {
+      cb(ERROR, res);
+    }
+    return res;
+  } catch (error) {
+    return error;
+  }
+}) 

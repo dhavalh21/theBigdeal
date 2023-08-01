@@ -45,7 +45,6 @@ const userSlice = createSlice({
       })
       .addCase(userRegister.pending, (state, action) => {
         state.status = STATUS.LOADING;
-        console.log("pending")
       })
       .addCase(userRegister.fulfilled, (state, action) => {
         state.status = STATUS.FULFILLED;

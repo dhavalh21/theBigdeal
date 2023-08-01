@@ -23,6 +23,15 @@ export const userRegisterHttp = async (data) => {
     const response = await axiosInstance.post("user/register", data);
     return response;
   } catch (error) {
-    return error; 
+    return error;
+  }
+};
+
+export const userLogoutHttp = async () => {
+  try {
+    const response = await axiosInstance.put("user/logout");
+    return response;
+  } catch (error) {
+    return error;
   }
 };

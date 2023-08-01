@@ -9,7 +9,7 @@ axiosInstance.interceptors.request.use(
   (config) => {
     const JWT_TOKEN = storage.getToken();
     if (JWT_TOKEN) {
-      config.headers.Authorization = `Bearer ${JWT_TOKEN}`;
+      config.headers.Authorization = `Bearer ${JSON.parse(JWT_TOKEN)}`;
     }
     return config;
   },
