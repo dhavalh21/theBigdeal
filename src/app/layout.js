@@ -1,13 +1,15 @@
 import { Montserrat } from "next/font/google";
-import "./globals.css";
+import "@/styles/global.css";
 import { Metadata } from "next";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 import Header from "@/components/Header";
-import AuthSessionProvider from "../providers/sessionProviders";
+import NextAuthSessionProvider from "./providers/sessionProviders";
+import Providers from "@/redux/Provider";
 
-const APP_NAME = "Next13 - PWA";
-const APP_DESCRIPTION = "Next13 with PWA";
+const APP_NAME = "Big Deal";
+const APP_DESCRIPTION =
+  "BiG Deal - is a decentralized blockchain-based platform that churns out amazing deals (BiG Deals) to its community members via auctioning and other engagement models. Each engagement has elements of luck, skill, gamification and is amazing fun. BiG Deal has a unique ZERO LOSS model ensuring the best returns for its community.";
 
 export const metadata = {
   title: APP_NAME,
@@ -47,10 +49,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <AuthSessionProvider>
-          <Header />
-          {children}
-        </AuthSessionProvider>
+        <Providers>
+          <NextAuthSessionProvider>
+            <Header />
+            {children}
+          </NextAuthSessionProvider>
+        </Providers>
       </body>
     </html>
   );

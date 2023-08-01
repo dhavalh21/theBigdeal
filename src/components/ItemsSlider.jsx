@@ -1,5 +1,5 @@
+'use client'
 import Slider from "react-slick";
-
 import { DefaultPlayer as Video } from "react-html5video";
 import "react-html5video/dist/styles.css";
 import "slick-carousel/slick/slick.css";
@@ -8,6 +8,7 @@ import WinnerMessageCard from "./common/Card/MessageCard/WinnerMessageCard/Winne
 import LowBalanceMessageCard from "./common/Card/MessageCard/LowBalanceMessageCard/LowBalanceMessageCard";
 import RegisteredMessage from "./common/Card/MessageCard/RegisteredMessage/RegisteredMessage";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function ItemsSlider({
   data,
@@ -61,7 +62,7 @@ export default function ItemsSlider({
           </div>
         )}
         <div>
-          {isBuyNowShow ? (
+          {false ? (
             <WinnerMessageCard winnerDetails={winnerDetails} />
           ) : null}
           {isLowBalance ? <LowBalanceMessageCard /> : null}

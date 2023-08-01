@@ -1,3 +1,21 @@
+//auction id 
+export const STATUSTOURL= {
+  LOST: "my-auction",
+  WON: "my-auction",
+  ONGOING: "live-auction",
+  Regsitered: "upcoming-auction",
+};
+
+
+//validation messages
+export const VALIDATEMESSAGE = {
+  INVALIDEMAIL : "Invalid email",
+  EMPTYEMAIL : "Please enter your email !",
+}
+
+
+
+//OLD DATA
 export const LS = {
   AUTH_TOKEN: "ATOKEN",
   REF_TOKEN: "RTOKEN",

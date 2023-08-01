@@ -19,10 +19,10 @@ const InputField = ({
       className={className}
       style={{ border: "1px solid #162459", outline: "none" }}
     >
+      {/* TODO: Import `CRYPTO_PAYMENT_OPTIONS` from web3.constants and remove the below mentioned static values. */}
       <option>Select</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
+      <option>BiG</option>
+      <option>USDT</option>
     </select>
   ) : (
     <>

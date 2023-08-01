@@ -14,15 +14,15 @@ import { emailValidation } from "@/helpers/utils.helper";
 import { SUCCESS } from "@/helpers/constants/labels.constants";
 import { signIn } from "next-auth/react";
 
+import { useRouter } from "next/navigation";
 function LoginPage() {
   const dispatch = useDispatch();
   const [otpValue, setOtpValue] = useState("");
   const [otpVisible, setOtpVisible] = useState(false);
   const [email, setEmail] = useState("");
-
+  const router = useRouter();
   const [emailError, setEmailError] = useState(false);
   const [otpError, setOtpError] = useState(false);
-
   const handleEmailChange = (event) => {
     setOtpVisible(false);
     setEmail(event.target.value);
@@ -32,6 +32,7 @@ function LoginPage() {
     setOtpValue(e);
   };
   const handleSubmit = (event) => {
+    
     event.preventDefault();
     let flagError = false;
 
@@ -39,7 +40,7 @@ function LoginPage() {
       setOtpVisible(false);
       flagError = true;
       setEmailError(true);
-    } else if (emailValidation(email)) {
+    } else if (!emailValidation(email)) {
       setEmailError(true);
       setOtpVisible(false);
       flagError = true;
@@ -91,7 +92,7 @@ function LoginPage() {
                 callbackUrl: "/",
               });
               //TODO:add toast msg
-              // <NavLink href="/home" />;
+              router.push("/");
               // toast.success("You have logged in successfully.");
             } else {
               //TODO:add toast msg

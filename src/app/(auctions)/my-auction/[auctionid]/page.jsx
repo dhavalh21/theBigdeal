@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import HomeTabSection from "@/components/pages/LiveAuction/TabSection/HomeTabSection";
 import AvatarList from "@/components/pages/LiveAuction/AvatarList";
@@ -10,12 +10,15 @@ import mobile from "@/assets/images/mobile.png";
 import ItemsSlider from "@/components/ItemsSlider";
 import BuyNow from "@/components/pages/LiveAuction/BuyNow";
 import MessageTextCard from "@/components/common/Card/MessageCard/TextCard/MessageTextCard";
-import socket from "@/helpers/socket";
+import TabHandler from "@/components/pages/MyAuctionTab/TabSection";
+import { useSearchParams } from 'next/navigation'
 
 export default function LiveAuctionPage() {
   const [isBuyNowShow, setIsBuyNowShow] = useState(false);
   const [isLowBalance, setIsLowBalance] = useState(false);
   const isSlider = true;
+  const searchParams = useSearchParams()
+  const search = searchParams.get('status')
 
   const sliderData = [
     {
@@ -34,15 +37,8 @@ export default function LiveAuctionPage() {
       image: mobile,
     },
   ];
-  useEffect(() => {
-    socket.init();
-    setTimeout(() => {
-      socket.emit("health", { message: "socket testing" });
-    }, 1000);
-  }, []);
-  socket.on("healthResponse", async (data) => {
-    console.log(data, "=================>");
-  });
+
+
   return (
     <>
       <Banner
@@ -57,8 +53,9 @@ export default function LiveAuctionPage() {
             <ItemsSlider
               data={sliderData}
               isSlider={isSlider}
-              isBuyNowShow={isBuyNowShow}
+              isBuyNowShow={true}
               isLowBalance={isLowBalance}
+             
             />
             <MessageTextCard
               message={
@@ -71,7 +68,8 @@ export default function LiveAuctionPage() {
             <BidBarContainer
               isBuyNowShow={isBuyNowShow}
               setIsLowBalance={setIsLowBalance}
-              navigateFrom="home"
+              navigateFrom="auctiontable"
+              search={search}
             />
           </div>
 
@@ -81,7 +79,7 @@ export default function LiveAuctionPage() {
             ) : (
               <>
                 {/* Tablinks Section */}
-                <HomeTabSection />
+                <TabHandler />
                 {/* Bidder List Section */}
                 <AvatarList />
               </>

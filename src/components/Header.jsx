@@ -14,12 +14,14 @@ import { ROUTES_PATH } from "../helpers/constants/constants.helper";
 import { storage } from "../helpers/storage";
 import Image from "next/image";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { userLogout } from "@/redux/user/user.thunk";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef();
-
   const [showPopup, setShowPopup] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -34,6 +36,11 @@ function Header() {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+  const handleLogout = () => {
+    console.log("first")
+    dispatch(userLogout());
+  };
 
   return (
     <header className="bg-primary justify-evenly flex p-2">
@@ -128,10 +135,7 @@ function Header() {
             <div className=" rounded-lg bg-gradient-to-r from-[#0052B4]   to-[#ae96ba] p-[1px] max-tablet:hidden">
               <button
                 className=" px-4 py-1 bg-primary rounded-lg"
-                onClick={() => {
-                  storage.clear();
-                  // navigate(ROUTES_PATH.LOGIN);
-                }}
+                onClick={handleLogout}
               >
                 Logout
               </button>

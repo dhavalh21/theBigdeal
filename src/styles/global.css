@@ -50,7 +50,7 @@ body {
 }
 
 .countdown-image {
-  background-image: url(../../assets/images/countdown-image.png);
+  background-image: url(../assets/images/countdown-image.png);
   background-size: 1105% 100%;
   background-position-y: 0;
   overflow: hidden;
