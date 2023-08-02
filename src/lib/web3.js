@@ -1,41 +1,35 @@
 import { checkError } from "@/helpers/constants/wallet.utils";
-import {
-  CONTRACT_LISTENER,
-  METAMASK_ERROR_CODES,
-  successMessage,
-} from "@/helpers/constants/web3.constants";
+import { METAMASK_ERROR_CODES } from "@/helpers/constants/web3.constants";
 import Web3 from "web3";
 
 const web3 = new Web3(window.ethereum);
 
 /**
- * @description Metamask's installation check.
+ * @description Checks if the user has MetaMask installed.
  * @returns {Boolean} - true if installed.
  */
 export const metamaskInstallationCheck = () =>
   window.ethereum && window.ethereum.isMetaMask ? true : false;
 
 /**
- * @description Fetch accounts of user.
- * @returns {string} wallet address of the user
+ * @description Returns a list of accounts the node controls.
+ * @returns {String} wallet address of the connected user.
  */
 export const fetchConnectedAccounts = async () =>
   (await web3.eth.getAccounts())[0];
 
 /**
- * @description Connecting user with metamask.
- * @returns {(Object | Boolean)} - returns object if no error's thrown, else boolean.
+ * @description Connects an application with metamask.
+ * @returns {(String | Boolean)} - returns string if no error's thrown, else boolean.
  */
 export const connectToMetaMask = async () => {
   const walletAddress = await fetchConnectedAccounts();
-  if (walletAddress) {
-    return walletAddress;
-  }
+  if (walletAddress) return walletAddress;
   try {
-    const walletAddress = await web3.currentProvider.request({
+    const walletAddressArr = await web3.currentProvider.request({
       method: "eth_requestAccounts",
     });
-    return walletAddress[0];
+    return walletAddressArr[0];
   } catch (error) {
     // TODO: Switch 'checkError' to function call file.
     checkError(error);
@@ -43,28 +37,16 @@ export const connectToMetaMask = async () => {
   }
 };
 
-// TODO: Change to mainnet pre-deployment.
 /**
- * @description Adds BSC Testnet chain for the user.
- * @returns {Boolean} - true if no error's thrown else false.
+ * @description Creates a confirmation asking the user to add the specified chain to the wallet application.
+ * @param {Object} networkParams
+ * @returns {Boolean}
  */
-export const addChain = async (network) => {
+export const addChain = async (networkParams) => {
   try {
     await web3.currentProvider.request({
       method: "wallet_addEthereumChain",
-      params: [
-        {
-          chainId: network.CHAINID,
-          chainName: network.CHAINNAME,
-          rpcUrls: [network.RPCURLS],
-          nativeCurrency: {
-            name: network.NATIVE_CURRENCY_NAME,
-            symbol: network.NATIVE_CURRENCY_SYMBOL,
-            decimals: network.NATIVE_CURRENCY_DECIMAL,
-          },
-          blockExplorerUrls: [network.BLOCK_EXPLORER_URL],
-        },
-      ],
+      params: [networkParams],
     });
     return true;
   } catch (error) {
@@ -75,8 +57,7 @@ export const addChain = async (network) => {
 };
 
 /**
- *
- * @description - switch to particular network and if not added then add it.
+ * @description - Requests that the wallet switches its active Ethereum chain.
  * @param {network} - network to which the user needs to switch
  * @returns {Boolean} true if no error's thrown and successful switch else false.
  */
@@ -84,7 +65,7 @@ export const switchChain = async (network) => {
   try {
     await web3.currentProvider.request({
       method: "wallet_switchEthereumChain",
-      params: [{ chainId: network.CHAINID }],
+      params: [{ chainId: network.chainId }],
     });
     return true;
   } catch (error) {
@@ -93,36 +74,28 @@ export const switchChain = async (network) => {
       error.code === METAMASK_ERROR_CODES.INTERNAL_JSON_RPC
     ) {
       try {
-        let res = await addChain(network);
-        if (res) {
-          if (await checkNetwork(network.CHAINID)) return true;
+        if (await addChain(network)) {
+          if (await checkNetwork(network.chainId)) return true;
         }
       } catch (error) {
         return false;
       }
-    } else {
-      return false;
-    }
+    } else return false;
   }
 };
+
 /**
- *
- * @description - to import tokens into Metamask wallet.
- * @param {token} - token to be added
- * @returns true if no error's thrown else false.
+ * @description - Helps import tokens into Metamask.
+ * @param {Object} tokenOptions - token options of the token to be imported into the wallet.
+ * @returns {Boolean} true if no error's thrown.
  */
-export const importTokenIntoMetaMask = async (token) => {
+export const importTokenIntoMetaMask = async (tokenOptions) => {
   try {
     return await web3.currentProvider.request({
       method: "wallet_watchAsset",
       params: {
         type: "ERC20",
-        options: {
-          address: token.TOKEN_ADDRESS,
-          symbol: token.TOKEN_SYMBOL,
-          decimals: token.TOKEN_DECIMALS,
-          image: token.TOKEN_IMAGE,
-        },
+        options: tokenOptions,
       },
     });
   } catch (error) {
@@ -137,22 +110,14 @@ export const importTokenIntoMetaMask = async (token) => {
  * @param {string} - hexadecimal value of netId
  * @returns {Boolean} - true if user's on the required chain.
  */
-export const checkNetwork = async (netId) => {
-  try {
-    const idInDecimal = await web3.utils.hexToNumber(netId);
-    const networkId = await web3.eth.getChainId();
-    // TODO: Change to BSC Mainnet pre-deployment.
-    return networkId === idInDecimal;
-  } catch (error) {
-    return false;
-  }
-};
+export const checkNetwork = async (netId) =>
+  (await web3.eth.getChainId()) === (await web3.utils.hexToNumber(netId));
 
 /**
  * @description Initializes a smart contract object.
- * @param @param {Object} abi - any smart contract's abi.
- * @param {String} contractAddress - any smart contract's address.
- * @returns {Object} - initialized contract.
+ * @param {Object} abi - smart contract's abi.
+ * @param {String} contractAddress - smart contract's address.
+ * @returns {Object} - contract's instance.
  */
 const initializeSmartContract = (abi, contractAddress) =>
   new web3.eth.Contract(abi, contractAddress);
@@ -177,15 +142,15 @@ export const sendSmartContract = (
   return contractInstance.methods[contractFunction]
     .apply(null, functionInput)
     .send.apply(null, sendInput)
-    .on(CONTRACT_LISTENER.TX_HASH, function () {
-      console.log(successMessage.TRANSACTION_IN_PROCESS);
+    .on("transactionHash", function () {
+      console.log("Transaction's in process. Kindly wait.");
     })
-    .on(CONTRACT_LISTENER.RECEIPT, function (receipt) {
+    .on("receipt", function (receipt) {
       if (receipt.status) {
-        console.log(successMessage.TRANSACTION_SUCCESS);
+        console.log("Transaction's successful.");
       }
     })
-    .on(CONTRACT_LISTENER.ERROR, function (error) {
+    .on("error", function (error) {
       // checkError(error);
     });
 };
@@ -208,9 +173,7 @@ export const callSmartContract = async (
   return contractInstance.methods[contractFunction]
     .apply(null, functionInputs)
     .call()
-    .then(function (result) {
-      return result;
-    });
+    .then((result) => result);
 };
 
 /**

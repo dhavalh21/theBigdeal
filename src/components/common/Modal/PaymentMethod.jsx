@@ -14,9 +14,9 @@ import Image from "next/image";
 import { displayWalletAddress } from "@/helpers/constants/wallet.utils";
 import {
   CONTRACT_FUNCTIONS,
-  errorMessage,
+  metamaskMessages,
   METAMASK_SITE_URL,
-  NETWORK_CHAINS,
+  CHAIN_METADATA,
   successMessage,
   TOKEN_DETAILS,
   ADMIN_WALLET_ADDRESS,
@@ -46,10 +46,12 @@ const PaymentMethod = ({ setVisible }) => {
                       `Connected with ${displayWalletAddress(walletAddress, 5)}`
                     );
                     if (
-                      await switchChain(NETWORK_CHAINS.BINANCE_TEST_NETWORK)
+                      await switchChain(CHAIN_METADATA.BINANCE_TEST_NETWORK)
                     ) {
                       // TODO: Replace consolelogs with toasts.
-                      console.log(successMessage.ON_BSC_TESTNET);
+                      console.log(
+                        metamaskMessages.successMessage.ON_BSC_TESTNET
+                      );
                       // TODO: Replace `1` below with the respective token amount received post multiplying the number of plays by 5.
                       const amountInWei = weiFunctions("1", WEI.TO_WEI);
                       if (
@@ -59,8 +61,8 @@ const PaymentMethod = ({ setVisible }) => {
                             [walletAddress],
                             // TODO: Change to `USDTTokenABI` if USDT selected.
                             BiGTokenABI,
-                            // TODO: Change to `TOKEN_DETAILS.BSC.TESTNET.USDT.TOKEN_ADDRESS` if USDT selected.
-                            TOKEN_DETAILS.BSC.TESTNET.BiG.TOKEN_ADDRESS
+                            // TODO: Change to `TOKEN_DETAILS.BSC.TESTNET.USDT.address` if USDT selected.
+                          TOKEN_DETAILS.BSC.TESTNET.BiG.address
                           )
                         ) >= parseInt(amountInWei)
                       ) {
@@ -71,8 +73,8 @@ const PaymentMethod = ({ setVisible }) => {
                             [{ from: walletAddress }],
                             // TODO: Change to `USDTTokenABI` if USDT selected.
                             BiGTokenABI,
-                            // TODO: Change to `TOKEN_DETAILS.BSC.TESTNET.USDT.TOKEN_ADDRESS` if USDT selected.
-                            TOKEN_DETAILS.BSC.TESTNET.BiG.TOKEN_ADDRESS
+                            // TODO: Change to `TOKEN_DETAILS.BSC.TESTNET.USDT.address` if USDT selected.
+                            TOKEN_DETAILS.BSC.TESTNET.BiG.address
                           );
                           if (data?.status) {
                             // TODO: Fetch transaction hash with `data.transactionHash` to do the necessary.
@@ -80,24 +82,32 @@ const PaymentMethod = ({ setVisible }) => {
                           }
                         } catch (error) {
                           // TODO: Replace consolelogs with toasts.
-                          console.log(errorMessage.TRANSACTION_FAILED);
+                          console.log(
+                            metamaskMessages.errorMessage.TRANSACTION_FAILED
+                          );
                         }
                       } else {
                         // TODO: Replace consolelogs with toasts.
-                        console.log(errorMessage.INSUFFICIENT_TOKENS);
+                        console.log(
+                          metamaskMessages.errorMessage.INSUFFICIENT_TOKENS
+                        );
                       }
                     } else {
                       // TODO: Replace consolelogs with toasts.
-                      console.log(errorMessage.NOT_ON_BSC);
+                      console.log(
+                        metamaskMessages.errorMessage.NOT_ON_BSC_TESTNET
+                      );
                     }
                   }
                 } else {
                   // TODO: Replace consolelogs with toasts.
-                  console.log(errorMessage.INSTALL_METAMASK);
+                  console.log(metamaskMessages.errorMessage.INSTALL_METAMASK);
                   setTimeout(() => {
                     window.open(METAMASK_SITE_URL, "_blank");
                   }, 2500);
                 }
+                // try {}
+                // catch (error){}
               }}
             >
               <div>

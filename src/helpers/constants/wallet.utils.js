@@ -1,4 +1,4 @@
-import { errorMessage, METAMASK_ERROR_CODES } from "./web3.constants";
+import { metamaskMessages, METAMASK_ERROR_CODES } from "./web3.constants";
 
 /**
  * @description Helper function which takes in the address and manipulates it in such a way that is to be displayed to user.
@@ -17,9 +17,9 @@ export const displayWalletAddress = (address, offset) =>
  */
 export const checkError = (error) => {
   if (error.code === METAMASK_ERROR_CODES.USER_REJECTED_REQUEST) {
-    console.log(errorMessage.REQUEST_DENIED);
+    console.log(metamaskMessages.errorMessage.REQUEST_DENIED);
   } else if (error.code === METAMASK_ERROR_CODES.RESOURCE_BUSY) {
-    console.log(errorMessage.RESOURCE_BUSY);
+    console.log(metamaskMessages.errorMessage.RESOURCE_BUSY);
   } else if (error.code === METAMASK_ERROR_CODES.TRANSACTION_REJECTED) {
     console.log(error.message);
   }
