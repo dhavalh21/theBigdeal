@@ -221,9 +221,6 @@ export function lazyImport(factory, name) {
 }
 export const emailValidation = (email) => {
   const regex =
-    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-  if (email !== "" && regex.test(email) === false) {
-    return true;
-  }
-  return false;
+  /[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}(.[a-z{2,8}])?/g;
+  return regex.test(email)
 };

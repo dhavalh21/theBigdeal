@@ -1,7 +1,9 @@
 import React from "react";
 import GetNow from "@/assets/images/GetNow.png";
 import RegisterWheel from "@/assets/images/register.png";
+import buyNow from "@/assets/images/buyNow.png";
 import RegisteredWheel from "@/assets/images/registerd.png";
+import claim from "@/assets/images/claim.png";
 import Image from "next/image";
 
 const TimerWheel = ({
@@ -11,17 +13,21 @@ const TimerWheel = ({
   isRegistered,
   navigateFrom,
   setRegistered,
+  search,
 }) => {
+  console.log(search === "won","timer")
   return (
     <>
-      {isBuyNowShow ? (
+      {true ? (
         <Image
           src={
-            navigateFrom === "home"
-              ? GetNow
-              : !isRegistered
-              ? RegisterWheel
-              : RegisteredWheel
+               search === "Lost"
+              ? buyNow
+              : search === "Won"
+              ?GetNow:
+              search==='Ongoing'?
+              RegisterWheel
+              :RegisteredWheel
           }
           onClick={() =>
             isRegistered !== undefined && setRegistered(!isRegistered)

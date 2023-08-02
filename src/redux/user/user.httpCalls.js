@@ -17,3 +17,21 @@ export const userVerifyHttp = async (data) => {
     return error;
   }
 };
+
+export const userRegisterHttp = async (data) => {
+  try {
+    const response = await axiosInstance.post("user/register", data);
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const userLogoutHttp = async () => {
+  try {
+    const response = await axiosInstance.put("user/logout");
+    return response;
+  } catch (error) {
+    return error;
+  }
+};

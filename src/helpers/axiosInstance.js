@@ -9,7 +9,7 @@ axiosInstance.interceptors.request.use(
   (config) => {
     const JWT_TOKEN = storage.getToken();
     if (JWT_TOKEN) {
-      config.headers.Authorization = `Bearer ${JWT_TOKEN}`;
+      config.headers.Authorization = `Bearer ${JSON.parse(JWT_TOKEN)}`;
     }
     return config;
   },
@@ -25,13 +25,13 @@ axiosInstance.interceptors.response.use(
   },
   (error) => {
     //TODO: add error toast message here
-    if (err.message === "Network Error")
+    if (error.message === "Network Error")
       return {
         success: false,
         message: "Network Error",
         metdata: {},
       };
-    const { data, status } = err.response;
+    const { data, status } = error.response;
     return { ...data, status };
   }
 );

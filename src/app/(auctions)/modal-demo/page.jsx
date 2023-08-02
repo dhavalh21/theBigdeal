@@ -5,7 +5,6 @@ import InsufficientBal from "@/components/common/Modal/InsufficientBal";
 import BuyPlays from "@/components/common/Modal/BuyPlays";
 import PaymentMethod from "@/components/common/Modal/PaymentMethod";
 import PaymentConfirm from "@/components/common/Modal/PaymentConfirm";
-import DeactiveBidBot from "@/components/common/Modal/DeactiveBidBot";
 
 const ModalDemo = () => {
   const [visible, setVisible] = useState(1);
@@ -19,7 +18,6 @@ const ModalDemo = () => {
       {visible === 3 ? <BuyPlays setVisible={setVisible} /> : null}
       {visible === 4 ? <PaymentMethod setVisible={setVisible} /> : null}
       {visible === 5 ? <PaymentConfirm setVisible={setVisible} /> : null}
-      {visible === 6 ? <DeactiveBidBot /> : null}
     </div>
   );
 };

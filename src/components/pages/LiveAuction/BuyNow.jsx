@@ -6,8 +6,8 @@ import TextCardList from "@/components/common/Card/MessageCard/TextCard/TextCard
 const List = [
   { HEADING: "Product Cost", PARAGRAPH: "$2000" },
   { HEADING: "No. of Bids Placed", PARAGRAPH: "300" },
-  { HEADING: "Buy Now Price", PARAGRAPH: "$1600" },
-];
+  { HEADING: "Get Now Price", PARAGRAPH: "$1600" },
+];  
 
 const BuyNow = () => {
   return (

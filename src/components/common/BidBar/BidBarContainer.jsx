@@ -9,6 +9,7 @@ const BidBarContainer = ({
   isRegistered,
   navigateFrom,
   setRegistered,
+  search,
 }) => {
   //Bid timer hooks
   const { countDown, setCountDown } = useTimerHooks();
@@ -32,6 +33,7 @@ const BidBarContainer = ({
           countDown={countDown}
           isBuyNowShow={isBuyNowShow}
           isRegistered={isRegistered}
+          search={search}
           navigateFrom={navigateFrom}
           setRegistered={(value) => setRegistered(value)}
         />

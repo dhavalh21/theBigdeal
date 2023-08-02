@@ -19,6 +19,7 @@ const DeactiveBidBot = ({ setIsModalVisible }) => {
           style={{
             outline: "none",
           }}
+          onClick={() => setIsModalVisible(false)}
         >
           Cancel
         </button>
