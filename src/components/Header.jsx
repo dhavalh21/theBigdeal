@@ -16,12 +16,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { userLogout } from "@/redux/user/user.thunk";
+import { SUCCESS } from "@/helpers/constants/labels.constants";
+import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef();
   const [showPopup, setShowPopup] = useState(false);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -38,12 +42,21 @@ function Header() {
   }, []);
 
   const handleLogout = () => {
-    console.log("first")
-    dispatch(userLogout());
+    dispatch(
+      userLogout({
+        cb: (status,data) => {
+          if (status === SUCCESS) {
+            toast.success(data.message);
+            router.push("/login");
+          }
+        },
+      })
+    );
   };
 
   return (
     <header className="bg-primary justify-evenly flex p-2">
+       <Toaster />
       <div
         className={`fixed top-0  bottom-0 w-[300px] bg-header z-50 shadow-card transition ease-in-out duration-700 bg-primary flex flex-col gap-10  max-tablet:block ${
           isMenuOpen ? " right-0 " : " right-[-300px]"

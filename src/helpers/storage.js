@@ -28,7 +28,8 @@ const storage = {
   clear: () => {
     window.localStorage.removeItem(storagePrefixAccess);
     window.localStorage.removeItem(storageUUID);
-    window.localStorage.removeItem(storagePrefixRefresh);
+    window.localStorage.removeItem(storagePrefixRefresh); 
+    window.localStorage.removeItem(storageUserInfo); 
   },
 };
 export default storage;

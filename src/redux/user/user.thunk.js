@@ -62,9 +62,10 @@ export const userRegister = createAsyncThunk(
   }
 );
 
-export const userLogout = createAsyncThunk('user/logout',async()=>{
+export const userLogout = createAsyncThunk("user/logout", async (params) => {
+  const { cb } = params;
   try {
-    const res = await userLogoutHttp();
+    const res = await userLogoutHttp({});
     if (res.success) {
       cb(SUCCESS, res);
     } else {
@@ -74,4 +75,4 @@ export const userLogout = createAsyncThunk('user/logout',async()=>{
   } catch (error) {
     return error;
   }
-}) 
+});

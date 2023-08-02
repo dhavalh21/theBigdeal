@@ -15,7 +15,6 @@ const TimerWheel = ({
   setRegistered,
   search,
 }) => {
-  console.log(search === "won","timer")
   return (
     <>
       {true ? (

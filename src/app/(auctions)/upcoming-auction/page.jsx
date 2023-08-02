@@ -7,12 +7,14 @@ import EndBar from "@/components/common/EndBar/EndBar";
 import TabHandler from "@/components/pages/UpcomingAuction/TabSection";
 import MessageTextCard from "@/components/common/Card/MessageCard/TextCard/MessageTextCard";
 import BidBarContainer from "@/components/common/BidBar/BidBarContainer";
+import { useDispatch } from "react-redux";
+import { upcomingAuction } from "@/redux/auctions/auctions.thunk";
 
 export default function UpcomingAuctionPage() {
   const [countDown, setCountDown] = useState(10);
 
   const [isRegistered, setRegistered] = useState(false);
-
+  const dispatch = useDispatch();
   const isSlider = false;
   const sliderData = {
     url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
@@ -28,6 +30,11 @@ export default function UpcomingAuctionPage() {
     }
     return () => clearInterval(interval);
   }, [countDown]);
+
+  useEffect(() => {
+    dispatch(upcomingAuction());
+    console.log(upcomingAuction);
+  }, []);
 
   return (
     <>
